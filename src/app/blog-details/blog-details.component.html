@@ -1,0 +1,120 @@
+<header>
+  <navbar></navbar>
+  <div class="header-msg">
+    <p style="font-size: 1.88rem">RESMÅL</p>
+  </div>
+</header>
+
+<section id="blog-section">
+  <div *ngIf="blogDetails" class="blog-detail my-4">
+    <button
+      style="position: fixed; top: 2rem; z-index: 9999; left: 2rem"
+      class="btn btn-warning"
+      (click)="goBack()"
+    >
+      Back
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <img class="my-3" [src]="blogDetails.thumbnailUrl" alt="Blog Thumbnail" />
+    <div class="blog-inf my-2">
+      <p style="color: black">Författare: Servet Özalp</p>
+      <p style="color: grey; font-size: small">
+        {{ blogDetails.creationDate | date }}
+      </p>
+    </div>
+    <h3
+      class="my-3"
+      style="text-align: justify; opacity: 0.6; text-transform: capitalize"
+    >
+      {{ blogDetails.title }}
+    </h3>
+    <p style="text-align: justify">{{ blogDetails.body }}</p>
+    <div class="like-dislike">
+      <button class="like" (click)="like()">
+        <i class="fa-regular fa-thumbs-up"></i>
+      </button>
+      <button class="dislike" (click)="dislike()">
+        <i class="fa-regular fa-thumbs-down"></i>
+      </button>
+    </div>
+    <div class="blog-share" style="text-align: justify">
+      <div id="social-platforms" class="mt-5">
+        <a style="font-size: 1.1rem" class="btn btn-icon btn-facebook" href="#"
+          ><i class="fa fa-facebook pe-4"></i><span>Facebook</span>
+        </a>
+        <a style="font-size: 1.1rem" class="btn btn-icon btn-twitter" href="#"
+          ><i class="fa fa-twitter pe-4"></i><span>Twitter</span>
+        </a>
+      </div>
+
+      <div class="container my-5" *ngIf="blogDetails.comments.length > 0">
+        <div class="d-flex justify-content-center row">
+          <h3 class="text-center">KOMMENTARER</h3>
+          <div
+            class="coment-bottom bg-light p-2 px-4 mt-2"
+            style="position: relative"
+          >
+            <div
+              class="commented-section mt-2"
+              *ngFor="let comment of blogDetails.comments; let i = index"
+            >
+              <div class="d-flex flex-row align-items-center commented-user">
+                <h5 class="mr-2">Anonym</h5>
+
+                <button
+                  class="btn btn-danger btn-sm"
+                  [disabled]="!authService.isLogin"
+                  style="position: absolute; right: 1rem"
+                  (click)="removeComment(i)"
+                >
+                  Ta bort
+                </button>
+              </div>
+              <div class="comment-text-sm">
+                <span>{{ comment }}</span>
+              </div>
+              <div class="reply-section">
+                <div class="d-flex flex-row align-items-center voting-icons">
+                  <i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i>
+                  <i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i>
+                  <h6 class="ml-2 mt-1">Svara</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="new-comment">
+        <div class="container">
+          <textarea
+            [(ngModel)]="newComment"
+            placeholder="Add a new comment"
+            class="textera"
+          ></textarea>
+          <button
+            (click)="addComment()"
+            class="btn btn-primary"
+            [disabled]="!newComment.trim() || !authService.isLogin"
+          >
+            Add Comment
+          </button>
+          <div
+            *ngIf="!authService.isLogin"
+            style="
+              width: 100%;
+              text-align: center;
+              color: red;
+              font-weight: 800;
+            "
+          >
+            Please login to make or remove the comment
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!blogDetails">
+    <p>Blog not found</p>
+  </div>
+</section>

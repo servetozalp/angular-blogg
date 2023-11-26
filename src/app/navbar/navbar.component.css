@@ -1,0 +1,92 @@
+nav {
+    position: absolute;
+    z-index: 4;
+    color: white; 
+    width: 65%;
+    height: 15%;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+}
+
+
+.nav-items{
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+}
+
+.nav-items .nav-item{
+    margin-left: 4rem;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.navbar-login-btn{
+    border: none;
+    padding: .22rem .66rem;
+    background-color:#03e9f4;
+    color: black;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 4px;
+    overflow: hidden;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.navbar-login-btn:hover{
+    background: #03e9f4;
+    color: #050801;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 200px #03e9f4;
+     -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
+}
+
+.login-container{
+    background-color: #050801;
+    color: gainsboro;
+}
+
+.login-container .container{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem .66rem;
+
+}
+
+.login-container .container input{
+    border: 2px solid #03e9f4;
+    padding: .66rem .44rem;
+}
+
+.user-info{
+    list-style-type: none;
+}
+
+.nav-items .add-blog{
+    border: 2px solid #03e9f4;
+    border-radius: 5px;
+    padding: .33rem .55rem;
+    transition: background-color .45s;
+}
+
+.nav-items .add-blog:hover{
+    background-color: #03e9f4;
+    color: black;
+    font-weight: 800;
+}

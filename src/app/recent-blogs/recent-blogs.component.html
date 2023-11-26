@@ -1,0 +1,60 @@
+<section class="light mb-5">
+  <div class="container py-2">
+    <div class="h1 text-center text-dark" id="pageHeaderTitle">RESMÅL</div>
+
+    <article class="postcard light blue" *ngFor="let item of recentBlogs">
+      <a class="postcard__img_link" href="#">
+        <img
+          class="postcard__img"
+          src="{{ item.thumbnailUrl }}"
+          alt="Image Title"
+        />
+      </a>
+      <div class="postcard__text t-dark">
+        <h1 class="postcard__title blue">
+          <a href="#">
+            {{ item.title }}
+          </a>
+        </h1>
+        <div class="postcard__subtitle small">
+          <time datetime="2020-05-25 12:00:00">
+            <i class="fas fa-calendar-alt mr-2"></i>
+            {{ item.creationDate | date }}
+          </time>
+        </div>
+        <div class="postcard__bar"></div>
+        <div class="postcard__preview-txt">
+          {{
+            item.body.length > 50 ? item.body.slice(0, 50) + "..." : item.body
+          }}
+          <span
+            [routerLink]="['/blog-details', item.blogID]"
+            class="ms-2"
+            style="color: blueviolet; cursor: pointer"
+            >läs mer ></span
+          >
+        </div>
+        <ul class="postcard__tagbox">
+          <li class="tag__item">
+            <i class="fa-solid fa-thumbs-up" style="color: #1877f2"></i
+            ><span class="ms-1" style="font-weight: 700">{{
+              likeDislikeService.getLikesCount(item.blogID)
+            }}</span>
+          </li>
+          <li class="tag__item">
+            <i class="fa-regular fa-comment" style="font-weight: 700"></i>
+            <span style="font-weight: 700" class="ms-1">{{
+              item.comments.length
+            }}</span>
+          </li>
+          <li class="tag__item">
+            <i class="fa-solid fa-thumbs-down text-danger"></i
+            ><span class="ms-1" style="font-weight: 700">{{
+              likeDislikeService.getDislikesCount(item.blogID)
+            }}</span>
+          </li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>

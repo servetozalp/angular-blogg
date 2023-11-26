@@ -1,0 +1,79 @@
+<nav>
+  <div class="nav-div">
+    <img class="nav-logo" src="assets/main-images/travel.png" alt="" />
+    <ul class="nav-items">
+      <li routerLink="" class="nav-item">HEM</li>
+      <li routerLink="/about" class="nav-item">OM MIG</li>
+      <li routerLink="/contact" class="nav-item">KONTAKTA MIG</li>
+      <li
+        routerLink=""
+        class="nav-item"
+        *ngIf="authService.isAdmin"
+        (click)="openModal()"
+      >
+        LÄGG BLOG
+      </li>
+      <li routerLink="" class="nav-item" *ngIf="authService.isLogin">
+        <button
+          style="color: aliceblue; font-weight: 700"
+          class="btn btn-dark"
+          (click)="logOut()"
+        >
+          LOGGA UT
+        </button>
+      </li>
+      <li class="nav-item" *ngIf="!authService.isLogin">
+        <button
+          class="navbar-login-btn"
+          (click)="openVerticallyCentered(content)"
+        >
+          LOGGA IN
+        </button>
+        <!-- login form -->
+        <ng-template #content let-modal>
+          <div class="login-container">
+            <div class="container">
+              <label for="username">Username:</label>
+              <input type="text" id="username" [(ngModel)]="username" />
+
+              <label class="mt-3" for="password">Password:</label>
+              <input type="password" id="password" [(ngModel)]="password" />
+
+              <button (click)="login()" class="btn btn-primary mt-4">
+                Login
+              </button>
+
+              <div class="user-info mt-3">
+                <h5>User login</h5>
+                <li>
+                  <p>username: user</p>
+                  <p>password: password</p>
+                </li>
+                <h5 class="mt-4">Admin Login</h5>
+                <li>
+                  <p>username: admin</p>
+                  <p>password: adminpassword</p>
+                </li>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </li>
+      <ng-template #content let-modal>
+        <div class="login-container">
+          <div class="container">
+            <label for="blogTitle">Title:</label>
+            <input type="text" id="blogTitle" [(ngModel)]="newBlogTitle" />
+
+            <label class="mt-3" for="blogBody">Body:</label>
+            <textarea id="blogBody" [(ngModel)]="newBlogBody"></textarea>
+
+            <button class="btn btn-primary mt-4">Create Blog</button>
+
+            <!-- ... (rest of your modal content) -->
+          </div>
+        </div>
+      </ng-template>
+    </ul>
+  </div>
+</nav>

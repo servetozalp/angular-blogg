@@ -1,0 +1,42 @@
+.blog-footer{
+    width: 100%;
+    height: auto;
+    padding-bottom: 3.3rem;
+    background: #f4f8fa;
+}
+
+.col-md-6{
+    text-align: justify;
+    padding: 1.6rem;
+}
+
+.col-md-6 h4{
+    display: inline-block;
+    color: gray;
+    border-bottom: 2px solid gray;
+    padding-bottom: .44rem;
+}
+
+.col-md-6 i{
+    margin-left: 1rem;
+}
+
+.col-md-6 span{
+    opacity: .35;
+}
+
+
+.footer-social{
+    list-style-type: none;
+    display: flex;
+    text-align: start;
+    padding: .77rem 0 0 0;
+    margin: 0;
+}
+
+.footer-social i{
+    margin: 0;
+    padding-right: 1.3rem;
+    font-size: 2rem;
+    cursor: pointer;
+}
